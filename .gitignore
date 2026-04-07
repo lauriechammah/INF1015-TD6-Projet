@@ -14,18 +14,9 @@ Release/
 *.cache
 *.db
 *.VC.db
-*.user
 *.suo
 
-# CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-
 # Visual Studio solution and project files
-*.vcxproj
-*.vcxproj.filters
 
 # build artifacts
 build/
