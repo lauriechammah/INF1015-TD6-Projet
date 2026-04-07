@@ -24,7 +24,6 @@ cmake_install.cmake
 Makefile
 
 # Visual Studio solution and project files
-*.sln
 *.vcxproj
 *.vcxproj.filters
 
