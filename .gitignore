@@ -1,0 +1,32 @@
+# Visual Studio
+.vs/
+x64/
+Debug/
+Release/
+*.obj
+*.pdb
+*.tlog
+*.log
+*.exe.recipe
+*.ilk
+*.idb
+*.ipch
+*.cache
+*.db
+*.VC.db
+*.user
+*.suo
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Visual Studio solution and project files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# build artifacts
+build/
