@@ -1,11 +1,11 @@
 /**
- * Nom :         Echiquier.h
- * Description : Implémentation de l'échiquier
- * Auteurs :     Laurie Chammah, Marie-Josée Sarkis
+ * Nom :         Echiquier.cpp
+ * Description : Implementation de l'echiquier
+ * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
  * Date :        21 avril 2026
  **/
 
-#include "Echiquier.h"
+#include "Echiquier.hpp"
 #include <algorithm>
 
 void Echiquier::ajouterPiece(std::unique_ptr<Piece> piece)
@@ -49,20 +49,25 @@ bool Echiquier::deplacerPiece(const Position& source, const Position& destinatio
     if (!piece->estMouvementValide(destination, *this))
         return false;
 
-    // Retirer une pièce capturée si présente
-    auto it = std::remove_if(pieces_.begin(), pieces_.end(),
+    // Sauvegarder la piece capturee avant de la retirer
+    std::unique_ptr<Piece> pieceCapturee;
+    auto it = std::find_if(pieces_.begin(), pieces_.end(),
         [&](const std::unique_ptr<Piece>& p) {
             return p->getPosition() == destination;
         });
-    pieces_.erase(it, pieces_.end());
+    if (it != pieces_.end()) {
+        pieceCapturee = std::move(*it);
+        pieces_.erase(it);
+        piece = getPieceMutable(source);
+    }
 
-    // Simuler le mouvement pour vérifier qu'on ne se met pas en échec
     Position anciennePos = piece->getPosition();
     piece->setPosition(destination);
 
     if (estEnEchec(piece->estBlanc())) {
-        // Mouvement illégal : on se met en échec
         piece->setPosition(anciennePos);
+        if (pieceCapturee)
+            pieces_.push_back(std::move(pieceCapturee));
         return false;
     }
 
@@ -75,7 +80,6 @@ bool Echiquier::estEnEchec(bool estBlanc) const
     if (roi == nullptr)
         return false;
 
-    // Vérifier si une pièce adverse peut atteindre le roi
     for (const auto& piece : pieces_) {
         if (piece->estBlanc() != estBlanc) {
             if (piece->estMouvementValide(roi->getPosition(), *this))

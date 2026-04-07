@@ -1,11 +1,11 @@
 /**
- * Nom :         Piece.h
- * Description : Implémentation de la classe Piece
- * Auteurs :     Laurie Chammah, Marie-Josée Sarkis
+ * Nom :         Piece.cpp
+ * Description : Implementation de la classe Piece
+ * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
  * Date :        21 avril 2026
  **/
 
-#include "Piece.h"
+#include "Piece.hpp"
 
 Piece::Piece(Position position, bool estBlanc)
     : position_(position), estBlanc_(estBlanc)

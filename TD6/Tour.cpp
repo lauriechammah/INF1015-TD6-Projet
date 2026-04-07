@@ -1,12 +1,12 @@
 /**
- * Nom :         Tour.h
- * Description : Implémentation de la Tour
- * Auteurs :     Laurie Chammah, Marie-Josée Sarkis
+ * Nom :         Tour.cpp
+ * Description : Implementation de la Tour
+ * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
  * Date :        21 avril 2026
  **/
 
-#include "Tour.h"
-#include "Echiquier.h"
+#include "Tour.hpp"
+#include "Echiquier.hpp"
 #include <algorithm>
 
 Tour::Tour(Position position, bool estBlanc)
@@ -23,13 +23,11 @@ bool Tour::estMouvementValide(const Position& destination,
     int dLigne   = destination.ligne   - position_.ligne;
     int dColonne = destination.colonne - position_.colonne;
 
-    // La tour se déplace en ligne droite uniquement
     if (dLigne != 0 && dColonne != 0)
         return false;
     if (dLigne == 0 && dColonne == 0)
         return false;
 
-    // Vérifier qu'aucune pièce ne bloque le chemin
     int stepLigne   = (dLigne   != 0) ? (dLigne   > 0 ? 1 : -1) : 0;
     int stepColonne = (dColonne != 0) ? (dColonne > 0 ? 1 : -1) : 0;
 
@@ -43,7 +41,6 @@ bool Tour::estMouvementValide(const Position& destination,
         courante.colonne += stepColonne;
     }
 
-    // La case destination ne doit pas contenir une pièce alliée
     const Piece* cible = echiquier.getPiece(destination);
     if (cible != nullptr && cible->estBlanc() == estBlanc_)
         return false;
