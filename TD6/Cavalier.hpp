@@ -1,12 +1,14 @@
 /**
  * Nom :         Cavalier.hpp
  * Description : Piece Cavalier - se deplace en L
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
 #pragma once
 #include "Piece.hpp"
+
+namespace modele {
 
 class Cavalier : public Piece {
 public:
@@ -17,3 +19,5 @@ public:
 
     std::string getSymbole() const override;
 };
+
+}

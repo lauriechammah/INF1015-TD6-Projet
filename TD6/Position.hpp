@@ -1,18 +1,23 @@
 /**
  * Nom :         Position.hpp
  * Description : Represente une position sur l'echiquier
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
 #pragma once
+
+namespace modele {
+
+constexpr int TAILLE_ECHIQUIER = 8;
 
 struct Position {
     int ligne = 0;
     int colonne = 0;
 
     bool estValide() const {
-        return ligne >= 0 && ligne < 8 && colonne >= 0 && colonne < 8;
+        return ligne >= 0 && ligne < TAILLE_ECHIQUIER 
+            && colonne >= 0 && colonne < TAILLE_ECHIQUIER;
     }
 
     bool operator==(const Position& autre) const {
@@ -23,3 +28,5 @@ struct Position {
         return !(*this == autre);
     }
 };
+
+}

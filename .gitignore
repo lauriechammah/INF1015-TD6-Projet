@@ -16,7 +16,59 @@ Release/
 *.VC.db
 *.suo
 
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+cmake-build-*/
+CMakeUserPresets.json
+/CMakeUserPresets.json
+/CMakePresets.json
+
 # Visual Studio solution and project files
 
-# build artifacts
+# Build artifacts
 build/
+out/
+bin/
+lib/
+
+# macOS
+.DS_Store
+*.dSYM/
+*.app/
+
+# Dépendances locales vcpkg
+vcpkg_installed/
+vcpkg_installed.arm64-osx/
+
+# VS Code - keep settings but ignore workspace storage
+.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+.vscode/workspaceStorage/
+/.vscode/
+
+# C++ specific
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+core
+core.*
+
+# IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+

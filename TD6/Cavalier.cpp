@@ -1,13 +1,15 @@
 /**
  * Nom :         Cavalier.cpp
  * Description : Implementation du Cavalier
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
 #include "Cavalier.hpp"
 #include "Echiquier.hpp"
 #include <cmath>
+
+namespace modele {
 
 Cavalier::Cavalier(Position position, bool estBlanc)
     : Piece(position, estBlanc)
@@ -38,5 +40,7 @@ bool Cavalier::estMouvementValide(const Position& destination,
 
 std::string Cavalier::getSymbole() const
 {
-    return estBlanc_ ? "C" : "c";
+    return estBlanc_ ? "♘" : "♞";
+}
+
 }

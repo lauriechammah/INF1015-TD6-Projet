@@ -1,4 +1,11 @@
-﻿#include "Echiquier.hpp"
+﻿/**
+ * Nom :         main.cpp
+ * Description : 
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
+ * Date :        21 avril 2026
+ **/
+
+#include "Echiquier.hpp"
 #include "Roi.hpp"
 #include "Tour.hpp"
 #include "Cavalier.hpp"
@@ -40,55 +47,55 @@ void executerTests()
 
 	// --- Tests du Roi ---
 	{
-		Echiquier e;
-		e.ajouterPiece(std::make_unique<Roi>(Position{4, 4}, true));
+		modele::Echiquier e;
+		e.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{4, 4}, true));
 
-		assert(e.getPiece(Position{4, 4})->estMouvementValide(Position{5, 5}, e));
-		assert(e.getPiece(Position{4, 4})->estMouvementValide(Position{4, 5}, e));
-		assert(!e.getPiece(Position{4, 4})->estMouvementValide(Position{6, 4}, e));
-		assert(!e.getPiece(Position{4, 4})->estMouvementValide(Position{4, 4}, e));
+		assert(e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{5, 5}, e));
+		assert(e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{4, 5}, e));
+		assert(!e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{6, 4}, e));
+		assert(!e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{4, 4}, e));
 
 		cout << "  Roi : OK\n";
 	}
 
 	// --- Tests de la Tour ---
 	{
-		Echiquier e;
-		e.ajouterPiece(std::make_unique<Tour>(Position{0, 0}, true));
-		e.ajouterPiece(std::make_unique<Roi>(Position{3, 3}, false));
+		modele::Echiquier e;
+		e.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{0, 0}, true));
+		e.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{3, 3}, false));
 
-		assert(e.getPiece(Position{0, 0})->estMouvementValide(Position{0, 7}, e));
-		assert(e.getPiece(Position{0, 0})->estMouvementValide(Position{7, 0}, e));
-		assert(!e.getPiece(Position{0, 0})->estMouvementValide(Position{3, 3}, e));
+		assert(e.getPiece(modele::Position{0, 0})->estMouvementValide(modele::Position{0, 7}, e));
+		assert(e.getPiece(modele::Position{0, 0})->estMouvementValide(modele::Position{7, 0}, e));
+		assert(!e.getPiece(modele::Position{0, 0})->estMouvementValide(modele::Position{3, 3}, e));
 
-		Echiquier e2;
-		e2.ajouterPiece(std::make_unique<Tour>(Position{0, 0}, true));
-		e2.ajouterPiece(std::make_unique<Roi>(Position{0, 3}, true));
-		assert(!e2.getPiece(Position{0, 0})->estMouvementValide(Position{0, 5}, e2));
+		modele::Echiquier e2;
+		e2.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{0, 0}, true));
+		e2.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 3}, true));
+		assert(!e2.getPiece(modele::Position{0, 0})->estMouvementValide(modele::Position{0, 5}, e2));
 
 		cout << "  Tour : OK\n";
 	}
 
 	// --- Tests du Cavalier ---
 	{
-		Echiquier e;
-		e.ajouterPiece(std::make_unique<Cavalier>(Position{4, 4}, true));
+		modele::Echiquier e;
+		e.ajouterPiece(std::make_unique<modele::Cavalier>(modele::Position{4, 4}, true));
 
-		assert(e.getPiece(Position{4, 4})->estMouvementValide(Position{6, 5}, e));
-		assert(e.getPiece(Position{4, 4})->estMouvementValide(Position{2, 3}, e));
-		assert(e.getPiece(Position{4, 4})->estMouvementValide(Position{3, 6}, e));
-		assert(!e.getPiece(Position{4, 4})->estMouvementValide(Position{4, 6}, e));
-		assert(!e.getPiece(Position{4, 4})->estMouvementValide(Position{6, 6}, e));
+		assert(e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{6, 5}, e));
+		assert(e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{2, 3}, e));
+		assert(e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{3, 6}, e));
+		assert(!e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{4, 6}, e));
+		assert(!e.getPiece(modele::Position{4, 4})->estMouvementValide(modele::Position{6, 6}, e));
 
 		cout << "  Cavalier : OK\n";
 	}
 
 	// --- Test d'échec ---
 	{
-		Echiquier e;
-		e.ajouterPiece(std::make_unique<Roi>(Position{0, 0}, true));
-		e.ajouterPiece(std::make_unique<Roi>(Position{7, 7}, false));
-		e.ajouterPiece(std::make_unique<Tour>(Position{5, 7}, true));
+		modele::Echiquier e;
+		e.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 0}, true));
+		e.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{7, 7}, false));
+		e.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{5, 7}, true));
 
 		assert(!e.estEnEchec(true));
 		assert(e.estEnEchec(false));
@@ -98,12 +105,12 @@ void executerTests()
 
 	// --- Test déplacement qui se met en échec ---
 	{
-		Echiquier e;
-		e.ajouterPiece(std::make_unique<Roi>(Position{0, 0}, true));
-		e.ajouterPiece(std::make_unique<Tour>(Position{1, 0}, true));
-		e.ajouterPiece(std::make_unique<Tour>(Position{7, 0}, false));
+		modele::Echiquier e;
+		e.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 0}, true));
+		e.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{1, 0}, true));
+		e.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{7, 0}, false));
 
-		bool resultat = e.deplacerPiece(Position{1, 0}, Position{1, 5});
+		bool resultat = e.deplacerPiece(modele::Position{1, 0}, modele::Position{1, 5});
 		assert(!resultat);
 
 		cout << "  Protection echec : OK\n";
@@ -120,7 +127,7 @@ int main(int argc, char *argv[])
 
 	executerTests();
 
-	FenetreJeu fenetre;
+	vue::FenetreJeu fenetre;
 	fenetre.show();
 	return app.exec();
 }

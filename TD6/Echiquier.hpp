@@ -1,7 +1,7 @@
 /**
  * Nom :         Echiquier.hpp
  * Description : Gere l'etat du jeu et les verifications d'echec
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
@@ -9,6 +9,8 @@
 #include "Piece.hpp"
 #include <vector>
 #include <memory>
+
+namespace modele {
 
 class Echiquier {
 public:
@@ -28,3 +30,5 @@ private:
     Piece* getPieceMutable(const Position& position);
     const Piece* trouverRoi(bool estBlanc) const;
 };
+
+}

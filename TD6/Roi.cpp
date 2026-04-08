@@ -1,7 +1,7 @@
 /**
  * Nom :         Roi.cpp
  * Description : Implementation du Roi
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
@@ -9,9 +9,29 @@
 #include "Echiquier.hpp"
 #include <cmath>
 
+namespace modele {
+
+int Roi::compteur_ = 0;
+
 Roi::Roi(Position position, bool estBlanc)
     : Piece(position, estBlanc)
 {
+    if (compteur_ >= 2) 
+    {
+        throw RoiEnTropException(
+            "Impossible de creer un 3e roi : il y en a deja 2 sur l'echiquier.");
+    }
+    ++compteur_;
+}
+
+Roi::~Roi()
+{
+    --compteur_;
+}
+
+int Roi::getNombreRois()
+{
+    return compteur_;
 }
 
 bool Roi::estMouvementValide(const Position& destination,
@@ -37,5 +57,7 @@ bool Roi::estMouvementValide(const Position& destination,
 
 std::string Roi::getSymbole() const
 {
-    return estBlanc_ ? "R" : "r";
+    return estBlanc_ ? "♔" : "♚";
+}
+
 }

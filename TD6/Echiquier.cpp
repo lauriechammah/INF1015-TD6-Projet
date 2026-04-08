@@ -1,12 +1,15 @@
 /**
  * Nom :         Echiquier.cpp
  * Description : Implementation de l'echiquier
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
 #include "Echiquier.hpp"
+#include "DeplacementTemp.hpp"
 #include <algorithm>
+
+namespace modele {
 
 void Echiquier::ajouterPiece(std::unique_ptr<Piece> piece)
 {
@@ -34,7 +37,7 @@ Piece* Echiquier::getPieceMutable(const Position& position)
 const Piece* Echiquier::trouverRoi(bool estBlanc) const
 {
     for (const auto& piece : pieces_) {
-        if (piece->estBlanc() == estBlanc && piece->getSymbole() == (estBlanc ? "R" : "r"))
+        if (piece->estBlanc() == estBlanc && piece->getSymbole() == (estBlanc ? "♔" : "♚"))
             return piece.get();
     }
     return nullptr;
@@ -55,21 +58,24 @@ bool Echiquier::deplacerPiece(const Position& source, const Position& destinatio
         [&](const std::unique_ptr<Piece>& p) {
             return p->getPosition() == destination;
         });
+        
     if (it != pieces_.end()) {
         pieceCapturee = std::move(*it);
         pieces_.erase(it);
         piece = getPieceMutable(source);
     }
 
-    Position anciennePos = piece->getPosition();
-    piece->setPosition(destination);
+    {
+        DeplacementTemp depl(piece, destination);
 
-    if (estEnEchec(piece->estBlanc())) {
-        piece->setPosition(anciennePos);
-        if (pieceCapturee)
-            pieces_.push_back(std::move(pieceCapturee));
-        return false;
+        if (estEnEchec(piece->estBlanc())) {
+            if (pieceCapturee)
+                pieces_.push_back(std::move(pieceCapturee));
+            return false;
+        }
     }
+
+    piece->setPosition(destination);
 
     return true;
 }
@@ -87,4 +93,6 @@ bool Echiquier::estEnEchec(bool estBlanc) const
         }
     }
     return false;
+}
+
 }

@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF) # sans les extensions de GNU.
 
 # La raison pour laquelle on fait une variable d'environnement VCPKG_ROOT.
 # S'il n'arrive pas à détecter le bon triplet, la variable d'environnement VCPKG_TARGET_TRIPLET peut aussi être configurée.
-if (DEFINED ENV{VCPKG_ROOT})
+if (DEFINED ENV{VCPKG_ROOT} AND EXISTS "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 	message(STATUS "VCPKG_ROOT: $ENV{VCPKG_ROOT}")
 	if (DEFINED ENV{VCPKG_TARGET_TRIPLET})
 		message(VERBOSE "VCPKG_TARGET_TRIPLET: $ENV{VCPKG_TARGET_TRIPLET}")

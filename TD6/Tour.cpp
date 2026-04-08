@@ -1,13 +1,15 @@
 /**
  * Nom :         Tour.cpp
  * Description : Implementation de la Tour
- * Auteurs :     Laurie Chammah, Marie-Josee Sarkis
+ * Auteurs :     CHAMMAH (2451396) et SARKIS (2461138)
  * Date :        21 avril 2026
  **/
 
 #include "Tour.hpp"
 #include "Echiquier.hpp"
 #include <algorithm>
+
+namespace modele {
 
 Tour::Tour(Position position, bool estBlanc)
     : Piece(position, estBlanc)
@@ -50,5 +52,7 @@ bool Tour::estMouvementValide(const Position& destination,
 
 std::string Tour::getSymbole() const
 {
-    return estBlanc_ ? "T" : "t";
+    return estBlanc_ ? "♖" : "♜";;
+}
+
 }
