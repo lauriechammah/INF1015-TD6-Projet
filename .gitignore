@@ -23,8 +23,7 @@ cmake_install.cmake
 Makefile
 cmake-build-*/
 CMakeUserPresets.json
-/CMakeUserPresets.json
-/CMakePresets.json
+
 
 # Visual Studio solution and project files
 
