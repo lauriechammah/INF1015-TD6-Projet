@@ -10,6 +10,8 @@
 #include "Tour.hpp"
 #include "Cavalier.hpp"
 #include <QMessageBox>
+#include <QApplication>
+#include <QInputDialog>
 
 namespace vue {
 
@@ -34,8 +36,9 @@ void FenetreJeu::initialiserPlateau()
             auto* bouton = new QPushButton(this);
             bouton->setFixedSize(TAILLE_CASE, TAILLE_CASE);
 
-            QFont font("DejaVu Sans", 50);
-            bouton->setFont(font);
+            QFont policeDefaut = QApplication::font(); 
+            policeDefaut.setPointSize(50);
+            bouton->setFont(policeDefaut);
 
             bouton->setStyleSheet(
                 "QPushButton { background-color: " + couleurCase(ligne, col) + "; "
@@ -70,10 +73,20 @@ void FenetreJeu::initialiserPlateau()
     setCentralWidget(widgetCentral);
 }
 
+
 void FenetreJeu::initialiserPieces()
 {
+    QStringList options = { "Partie Standard", "Duel de Rois (Test)", "Fin de partie (Tours)" };
+    bool ok = false;
+    QString choix = QInputDialog::getItem(this, "Configuration", "Choisir une position :", options, 0, false, &ok);
+
+    if (!ok) return;
+
+    echiquier_.vider();
+
     try 
     {
+        if (choix == "Partie Standard") {
         echiquier_.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{0, 0}, false));
         echiquier_.ajouterPiece(std::make_unique<modele::Cavalier>(modele::Position{0, 1}, false));
         echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 4}, false));
@@ -85,6 +98,16 @@ void FenetreJeu::initialiserPieces()
         echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{7, 4}, true));
         echiquier_.ajouterPiece(std::make_unique<modele::Cavalier>(modele::Position{7, 6}, true));
         echiquier_.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{7, 7}, true));
+        }
+        else if (choix == "Duel de Rois (Test)") {
+            echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 4}, false));
+            echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{7, 4}, true));
+        }
+        else if (choix == "Fin de partie (Tours)") {
+            echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{0, 0}, false));
+            echiquier_.ajouterPiece(std::make_unique<modele::Tour>(modele::Position{7, 7}, true));
+            echiquier_.ajouterPiece(std::make_unique<modele::Roi>(modele::Position{7, 0}, true));
+        }
     }
     catch (const modele::RoiEnTropException& e) 
     {

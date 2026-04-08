@@ -95,4 +95,8 @@ bool Echiquier::estEnEchec(bool estBlanc) const
     return false;
 }
 
+void Echiquier::vider() {
+    pieces_.clear();
+}
+
 }

@@ -24,6 +24,8 @@ public:
 
     const std::vector<std::unique_ptr<Piece>>& getPieces() const { return pieces_; }
 
+    void vider();
+
 private:
     std::vector<std::unique_ptr<Piece>> pieces_;
 

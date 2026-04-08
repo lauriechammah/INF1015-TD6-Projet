@@ -52,7 +52,7 @@ bool Tour::estMouvementValide(const Position& destination,
 
 std::string Tour::getSymbole() const
 {
-    return estBlanc_ ? "♖" : "♜";;
+    return estBlanc_ ? "♖" : "♜";
 }
 
 }
