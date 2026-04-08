@@ -64,12 +64,28 @@ void FenetreJeu::initialiserPlateau()
     labelMessage_ = new QLabel("Tour des blancs", this);
     labelMessage_->setAlignment(Qt::AlignCenter);
     QFont fontLabel;
-    // QFont fontLabel = labelMessage_->font();
     fontLabel.setPointSize(14);
     labelMessage_->setFont(fontLabel);
 
+    auto* boutonReset = new QPushButton("Nouvelle Partie", this);
+    boutonReset->setFixedHeight(40);
+    boutonReset->setStyleSheet(
+        "QPushButton { "
+        "  background-color: #e1e1e1; "
+        "  border: 1px solid #8f8f91; "
+        "  border-radius: 3px; "
+        "  padding: 3px; "
+        "  font-size: 12px; "
+        "  color: black; "
+        "} "
+        "QPushButton:pressed { background-color: #d1d1d1; }"
+    );
+
+    connect(boutonReset, &QPushButton::clicked, this, &FenetreJeu::initialiserPieces);
+
     layoutPrincipal->addLayout(grille);
     layoutPrincipal->addWidget(labelMessage_);
+    layoutPrincipal->addWidget(boutonReset);
     setCentralWidget(widgetCentral);
 }
 
@@ -113,6 +129,10 @@ void FenetreJeu::initialiserPieces()
     {
         QMessageBox::critical(this, "Erreur - Trop de rois", e.what());
     }
+
+    rafraichirAffichage();
+
+    tourBlanc_ = true;
 }
 
 void FenetreJeu::rafraichirAffichage()
