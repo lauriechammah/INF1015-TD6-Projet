@@ -31,15 +31,6 @@
     <ClCompile Include="googletest\src\gtest-all.cc">
       <Filter>Sources Bibliotheques</Filter>
     </ClCompile>
-    <ClCompile Include="CalcWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Calc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestCalc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,9 +38,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Roi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cavalier.cpp">
@@ -61,14 +49,14 @@
     <ClCompile Include="FenetreJeu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Calc.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="CalcWindow.hpp">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="FenetreJeu.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -92,5 +80,17 @@
     <ClInclude Include="Cavalier.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DeplacementTemp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoiEnTropException.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

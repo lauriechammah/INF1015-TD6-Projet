@@ -7,6 +7,9 @@
 
 #include "Echiquier.hpp"
 #include "DeplacementTemp.hpp"
+#include "Roi.hpp"
+#include "Tour.hpp"
+#include "Cavalier.hpp"
 #include <algorithm>
 
 namespace modele {
@@ -52,7 +55,6 @@ bool Echiquier::deplacerPiece(const Position& source, const Position& destinatio
     if (!piece->estMouvementValide(destination, *this))
         return false;
 
-    // Sauvegarder la piece capturee avant de la retirer
     std::unique_ptr<Piece> pieceCapturee;
     auto it = std::find_if(pieces_.begin(), pieces_.end(),
         [&](const std::unique_ptr<Piece>& p) {
@@ -93,6 +95,36 @@ bool Echiquier::estEnEchec(bool estBlanc) const
         }
     }
     return false;
+}
+
+void Echiquier::chargerPartieStandard()
+{
+    vider();
+    ajouterPiece(std::make_unique<Tour>(Position{ 0, 0 }, false));
+    ajouterPiece(std::make_unique<Cavalier>(Position{ 0, 1 }, false));
+    ajouterPiece(std::make_unique<Roi>(Position{ 0, 4 }, false));
+    ajouterPiece(std::make_unique<Cavalier>(Position{ 0, 6 }, false));
+    ajouterPiece(std::make_unique<Tour>(Position{ 0, 7 }, false));
+    ajouterPiece(std::make_unique<Tour>(Position{ 7, 0 }, true));
+    ajouterPiece(std::make_unique<Cavalier>(Position{ 7, 1 }, true));
+    ajouterPiece(std::make_unique<Roi>(Position{ 7, 4 }, true));
+    ajouterPiece(std::make_unique<Cavalier>(Position{ 7, 6 }, true));
+    ajouterPiece(std::make_unique<Tour>(Position{ 7, 7 }, true));
+}
+
+void Echiquier::chargerDuelDeRois()
+{
+    vider();
+    ajouterPiece(std::make_unique<Roi>(Position{ 0, 4 }, false));
+    ajouterPiece(std::make_unique<Roi>(Position{ 7, 4 }, true));
+}
+
+void Echiquier::chargerFinDePartie()
+{
+    vider();
+    ajouterPiece(std::make_unique<Roi>(Position{ 0, 0 }, false));
+    ajouterPiece(std::make_unique<Tour>(Position{ 7, 7 }, true));
+    ajouterPiece(std::make_unique<Roi>(Position{ 7, 0 }, true));
 }
 
 void Echiquier::vider() {

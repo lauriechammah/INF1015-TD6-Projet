@@ -24,6 +24,10 @@ public:
 
     const std::vector<std::unique_ptr<Piece>>& getPieces() const { return pieces_; }
 
+    void chargerPartieStandard();
+    void chargerDuelDeRois();
+    void chargerFinDePartie();
+
     void vider();
 
 private:

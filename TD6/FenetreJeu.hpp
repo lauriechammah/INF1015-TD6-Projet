@@ -10,6 +10,10 @@
 #include <QMainWindow>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QDialog>
+#include <QComboBox>
+#include <QDialogButtonBox>
+#include <QVBoxLayout>
 #include <QLabel>
 
 namespace vue {

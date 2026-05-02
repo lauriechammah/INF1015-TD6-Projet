@@ -116,8 +116,6 @@
   <ItemGroup>
     <ClCompile Include="bibliotheque_cours\bibliotheque_cours.cpp" />
     <ClCompile Include="bibliotheque_cours\verification_allocation.cpp" />
-    <ClCompile Include="Calc.cpp" />
-    <ClCompile Include="CalcWindow.cpp" />
     <ClCompile Include="Cavalier.cpp" />
     <ClCompile Include="Echiquier.cpp" />
     <ClCompile Include="FenetreJeu.cpp" />
@@ -125,21 +123,23 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Roi.cpp" />
-    <ClCompile Include="TestCalc.cpp" />
+    <ClCompile Include="tests.cpp" />
     <ClCompile Include="Tour.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Calc.hpp" />
-    <QtMoc Include="CalcWindow.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Cavalier.hpp" />
+    <ClInclude Include="DeplacementTemp.hpp" />
     <ClInclude Include="Echiquier.hpp" />
     <QtMoc Include="FenetreJeu.hpp" />
     <ClInclude Include="Piece.hpp" />
     <ClInclude Include="Position.hpp" />
     <ClInclude Include="Roi.hpp" />
+    <ClInclude Include="RoiEnTropException.hpp" />
+    <ClInclude Include="tests.hpp" />
     <ClInclude Include="Tour.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
